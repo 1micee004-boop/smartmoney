@@ -1,0 +1,2311 @@
+<!doctype html>
+<html lang="kk">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Smart Money — Қаржылық сауаттылық</title>
+
+<style>
+:root{
+  --bg:#f7f8f3;
+  --surface:#fff;
+  --surface2:#eef2e8;
+  --olive:#65734a;
+  --olive2:#87976a;
+  --deep:#26321f;
+  --text:#263126;
+  --muted:#687166;
+  --line:#dfe5d8;
+  --gold:#c9a86a;
+  --shadow:0 18px 50px rgba(45,58,38,.09);
+  --radius:24px;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+html{
+  scroll-behavior:smooth;
+}
+
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font-family:Inter,ui-sans-serif,system-ui,-apple-system,"Segoe UI",sans-serif;
+}
+
+button,
+input{
+  font:inherit;
+}
+
+button{
+  cursor:pointer;
+}
+
+.app{
+  min-height:100vh;
+  background:var(--bg);
+}
+
+/* NAVIGATION */
+
+nav{
+  position:sticky;
+  top:0;
+  z-index:20;
+  background:rgba(255,255,255,.94);
+  backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--line);
+}
+
+.navin{
+  max-width:1180px;
+  margin:auto;
+  padding:14px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:16px;
+}
+
+.brand{
+  display:flex;
+  align-items:center;
+  gap:11px;
+  font-weight:800;
+  color:var(--deep);
+  letter-spacing:-.02em;
+  white-space:nowrap;
+}
+
+.logo{
+  width:42px;
+  height:42px;
+  border-radius:13px;
+  background:var(--olive);
+  color:#fff;
+  display:grid;
+  place-items:center;
+  font-weight:900;
+}
+
+.links{
+  display:flex;
+  gap:6px;
+  flex-wrap:wrap;
+  justify-content:center;
+}
+
+.links button{
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  padding:10px 13px;
+  border-radius:12px;
+}
+
+.links button:hover,
+.links button.active{
+  background:var(--surface2);
+  color:var(--deep);
+  font-weight:700;
+}
+
+/* LANGUAGE */
+
+.langs{
+  display:flex;
+  gap:5px;
+  background:var(--surface2);
+  padding:4px;
+  border-radius:12px;
+}
+
+.lang{
+  border:0;
+  background:transparent;
+  color:var(--muted);
+  padding:7px 9px;
+  border-radius:9px;
+  font-size:12px;
+  font-weight:800;
+}
+
+.lang.active{
+  background:var(--olive);
+  color:#fff;
+}
+
+/* MAIN */
+
+main{
+  max-width:1180px;
+  margin:auto;
+  padding:46px 24px 80px;
+}
+
+section{
+  scroll-margin-top:100px;
+  margin-top:72px;
+}
+
+/* HERO */
+
+.hero{
+  display:grid;
+  grid-template-columns:1.15fr .85fr;
+  gap:26px;
+  align-items:stretch;
+}
+
+.heroCopy{
+  padding:42px 8px;
+}
+
+.eyebrow{
+  display:inline-flex;
+  align-items:center;
+  gap:8px;
+  color:var(--olive);
+  font-weight:800;
+  font-size:13px;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+}
+
+.hero h1{
+  font-size:clamp(42px,6vw,76px);
+  line-height:.98;
+  letter-spacing:-.055em;
+  margin:16px 0 20px;
+  color:var(--deep);
+}
+
+.hero p{
+  font-size:18px;
+  line-height:1.65;
+  color:var(--muted);
+  max-width:620px;
+}
+
+.heroCard{
+  background:var(--deep);
+  color:#fff;
+  border-radius:32px;
+  padding:30px;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
+}
+
+.heroCard:after{
+  content:"";
+  position:absolute;
+  width:220px;
+  height:220px;
+  border-radius:50%;
+  background:#78895a;
+  right:-80px;
+  top:-70px;
+  opacity:.5;
+}
+
+.miniTitle{
+  position:relative;
+  z-index:1;
+  color:#d9e2cc;
+  font-size:13px;
+}
+
+.heroNumber{
+  position:relative;
+  z-index:1;
+  font-size:54px;
+  font-weight:850;
+  margin:10px 0 28px;
+}
+
+.bars{
+  position:relative;
+  z-index:1;
+  display:grid;
+  gap:12px;
+}
+
+.barRow{
+  display:grid;
+  grid-template-columns:120px 1fr 48px;
+  align-items:center;
+  gap:10px;
+  font-size:13px;
+}
+
+.track{
+  height:8px;
+  background:rgba(255,255,255,.16);
+  border-radius:20px;
+  overflow:hidden;
+}
+
+.fill{
+  height:100%;
+  background:#b9c69c;
+  border-radius:20px;
+}
+
+/* SECTIONS */
+
+.sectionHead{
+  display:flex;
+  justify-content:space-between;
+  gap:20px;
+  align-items:end;
+  margin-bottom:22px;
+}
+
+.sectionHead h2{
+  font-size:34px;
+  letter-spacing:-.04em;
+  margin:0;
+  color:var(--deep);
+}
+
+.sectionHead p{
+  margin:7px 0 0;
+  color:var(--muted);
+  max-width:700px;
+}
+
+.card{
+  background:var(--surface);
+  border:1px solid var(--line);
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+}
+
+/* SALARY */
+
+.salaryGrid{
+  display:grid;
+  grid-template-columns:.8fr 1.2fr;
+  gap:20px;
+}
+
+.inputCard{
+  padding:28px;
+}
+
+.label{
+  font-weight:750;
+  font-size:14px;
+  display:block;
+  margin-bottom:10px;
+}
+
+.inputWrap{
+  position:relative;
+}
+
+.inputWrap span{
+  position:absolute;
+  right:16px;
+  top:50%;
+  transform:translateY(-50%);
+  color:var(--muted);
+  font-weight:700;
+}
+
+.moneyInput{
+  width:100%;
+  border:2px solid var(--line);
+  border-radius:16px;
+  padding:17px 60px 17px 16px;
+  outline:none;
+  font-size:24px;
+  font-weight:800;
+  color:var(--deep);
+  background:#fbfcfa;
+}
+
+.moneyInput:focus{
+  border-color:var(--olive2);
+}
+
+.hint{
+  font-size:13px;
+  color:var(--muted);
+  margin:10px 0 22px;
+}
+
+.summary{
+  background:var(--surface2);
+  padding:18px;
+  border-radius:18px;
+}
+
+.summary strong{
+  display:block;
+  font-size:30px;
+  color:var(--deep);
+  margin-top:5px;
+}
+
+.alloc{
+  padding:26px;
+}
+
+.allocGrid{
+  display:grid;
+  grid-template-columns:1fr 220px;
+  gap:25px;
+}
+
+.allocRows{
+  display:grid;
+  gap:12px;
+}
+
+.allocRow{
+  display:grid;
+  grid-template-columns:34px 1fr 55px 110px;
+  gap:12px;
+  align-items:center;
+  padding:12px;
+  border-radius:15px;
+}
+
+.allocRow:hover{
+  background:#fafbf8;
+}
+
+.ico{
+  width:34px;
+  height:34px;
+  border-radius:10px;
+  background:var(--surface2);
+  display:grid;
+  place-items:center;
+}
+
+.pct{
+  font-weight:800;
+  color:var(--olive);
+}
+
+.amount{
+  text-align:right;
+  font-weight:800;
+}
+
+.donut{
+  width:190px;
+  height:190px;
+  border-radius:50%;
+  margin:auto;
+  background:
+    conic-gradient(
+      var(--olive) 0 55%,
+      #9dac84 55% 60%,
+      #c1cbae 60% 70%,
+      #d5dbc9 70% 85%,
+      #e7eadf 85% 100%
+    );
+  display:grid;
+  place-items:center;
+}
+
+.donut:after{
+  content:"100%";
+  width:112px;
+  height:112px;
+  background:#fff;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  font-size:24px;
+  font-weight:850;
+  color:var(--deep);
+}
+
+/* BUTTON */
+
+.action{
+  width:100%;
+  border:0;
+  background:var(--olive);
+  color:#fff;
+  padding:15px 20px;
+  border-radius:14px;
+  font-weight:800;
+  margin-top:15px;
+  transition:.2s;
+}
+
+.action:hover{
+  background:var(--deep);
+  transform:translateY(-1px);
+}
+
+/* IMPULSE */
+
+.purchase{
+  display:grid;
+  grid-template-columns:.85fr 1.15fr;
+  gap:20px;
+}
+
+.formCard{
+  padding:28px;
+}
+
+.field{
+  margin-bottom:17px;
+}
+
+.field input{
+  width:100%;
+  padding:14px 15px;
+  border:1px solid var(--line);
+  border-radius:14px;
+  background:#fbfcfa;
+  outline:none;
+}
+
+.field input:focus{
+  border-color:var(--olive2);
+}
+
+.question{
+  padding:16px 0;
+  border-top:1px solid var(--line);
+}
+
+.qtext{
+  font-weight:700;
+  line-height:1.4;
+  margin-bottom:10px;
+}
+
+.answers{
+  display:flex;
+  gap:8px;
+}
+
+.answers button{
+  flex:1;
+  border:1px solid var(--line);
+  background:#fff;
+  padding:10px;
+  border-radius:12px;
+  transition:.2s;
+}
+
+.answers button:hover{
+  border-color:var(--olive);
+}
+
+.answers button.selected{
+  background:var(--olive);
+  color:#fff;
+  border-color:var(--olive);
+}
+
+.result{
+  padding:30px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  min-height:430px;
+  transition:.3s;
+}
+
+.scoreCircle{
+  width:130px;
+  height:130px;
+  border-radius:50%;
+  display:grid;
+  place-items:center;
+  background:var(--surface2);
+  margin-bottom:18px;
+}
+
+.scoreCircle b{
+  font-size:35px;
+  color:var(--deep);
+}
+
+.result h3{
+  font-size:28px;
+  margin:5px 0 10px;
+}
+
+.result p{
+  color:var(--muted);
+  line-height:1.6;
+}
+
+.result.good{
+  border-color:#aebe93;
+}
+
+.result.warn{
+  border-color:#d8c795;
+}
+
+.result.bad{
+  border-color:#d3aaa1;
+}
+
+/* DEFINITIONS */
+
+.defs{
+  display:grid;
+  grid-template-columns:repeat(3,1fr);
+  gap:14px;
+}
+
+.def{
+  padding:22px;
+}
+
+.def span{
+  font-size:25px;
+}
+
+.def h3{
+  margin:12px 0 7px;
+}
+
+.def p{
+  color:var(--muted);
+  line-height:1.55;
+  font-size:14px;
+}
+
+/* FOOTER */
+
+.footer{
+  margin-top:80px;
+  padding-top:25px;
+  border-top:1px solid var(--line);
+  display:flex;
+  justify-content:space-between;
+  color:var(--muted);
+  font-size:13px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:900px){
+
+  .hero,
+  .salaryGrid,
+  .purchase{
+    grid-template-columns:1fr;
+  }
+
+  .allocGrid{
+    grid-template-columns:1fr;
+  }
+
+  .defs{
+    grid-template-columns:1fr 1fr;
+  }
+
+  .heroCopy{
+    padding-top:10px;
+  }
+
+}
+
+@media(max-width:650px){
+
+  main{
+    padding:30px 16px 60px;
+  }
+
+  .navin{
+    flex-wrap:wrap;
+  }
+
+  .brand{
+    width:100%;
+  }
+
+  .links{
+    width:100%;
+    overflow:auto;
+    justify-content:flex-start;
+  }
+
+  .langs{
+    position:absolute;
+    top:18px;
+    right:16px;
+  }
+
+  .hero h1{
+    font-size:48px;
+  }
+
+  .defs{
+    grid-template-columns:1fr;
+  }
+
+  .allocRow{
+    grid-template-columns:32px 1fr 45px;
+  }
+
+  .allocRow .amount{
+    grid-column:2/4;
+    text-align:left;
+  }
+
+  .barRow{
+    grid-template-columns:95px 1fr 40px;
+  }
+
+  .footer{
+    flex-direction:column;
+    gap:10px;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="app">
+
+<!-- NAVIGATION -->
+
+<nav>
+
+<div class="navin">
+
+<div class="brand">
+<div class="logo">₸</div>
+<div>SMART MONEY</div>
+</div>
+
+<div class="links">
+
+<button class="active"
+onclick="go('home')"
+data-nav="home">
+Басты бет
+</button>
+
+<button
+onclick="go('definitions')"
+data-nav="definitions">
+Анықтамалар
+</button>
+
+<button
+onclick="go('salary')"
+data-nav="salary">
+Жалақыны бөлу
+</button>
+
+<button
+onclick="go('impulse')"
+data-nav="impulse">
+Импульсивтілік
+</button>
+
+</div>
+
+<div class="langs">
+
+<button class="lang active"
+onclick="setLang('kk')">
+KZ
+</button>
+
+<button class="lang"
+onclick="setLang('ru')">
+RU
+</button>
+
+<button class="lang"
+onclick="setLang('en')">
+EN
+</button>
+
+</div>
+
+</div>
+
+</nav>
+
+
+<main>
+
+<!-- HOME -->
+
+<section id="home" style="margin-top:0">
+
+<div class="hero">
+
+<div class="heroCopy">
+
+<div class="eyebrow" id="eyebrow">
+● Қаржылық сауаттылық жобасы
+</div>
+
+<h1 id="heroTitle">
+Ақшаңды басқар.<br>
+<span style="color:var(--olive)">
+Болашағыңды құр.
+</span>
+</h1>
+
+<p id="heroText">
+Кірісті саналы түрде бөліп, қаржылық мақсаттарды жоспарлауға және қажетсіз, импульсивті сатып алуларды бағалауға көмектесетін интерактивті құрал.
+</p>
+
+<button
+class="action"
+onclick="go('salary')"
+id="heroButton">
+Калькуляторды ашу →
+</button>
+
+</div>
+
+
+<div class="heroCard">
+
+<div
+class="miniTitle"
+id="modelTitle">
+Ұсынылған қаржы моделі
+</div>
+
+<div class="heroNumber">
+100%
+</div>
+
+<div class="bars">
+
+<div class="barRow">
+<span id="bar1">Қажеттіліктер</span>
+<div class="track">
+<div class="fill" style="width:55%"></div>
+</div>
+<b>55%</b>
+</div>
+
+<div class="barRow">
+<span id="bar2">Еркін шығын</span>
+<div class="track">
+<div class="fill" style="width:5%"></div>
+</div>
+<b>5%</b>
+</div>
+
+<div class="barRow">
+<span id="bar3">Қарыз / инв.</span>
+<div class="track">
+<div class="fill" style="width:10%"></div>
+</div>
+<b>10%</b>
+</div>
+
+<div class="barRow">
+<span id="bar4">Қысқа мақсат</span>
+<div class="track">
+<div class="fill" style="width:15%"></div>
+</div>
+<b>15%</b>
+</div>
+
+<div class="barRow">
+<span id="bar5">Ұзақ байлық</span>
+<div class="track">
+<div class="fill" style="width:15%"></div>
+</div>
+<b>15%</b>
+</div>
+
+</div>
+</div>
+
+</div>
+
+</section>
+
+
+<!-- SALARY -->
+
+<section id="salary">
+
+<div class="sectionHead">
+
+<div>
+
+<h2 id="salaryTitle">
+Жалақыны бөлу
+</h2>
+
+<p id="salaryText">
+Айлық табысыңызды енгізіңіз — жүйе ұсынылған 55/5/10/15/15 моделіне сәйкес сомаларды бірден есептейді.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="salaryGrid">
+
+
+<div class="card inputCard">
+
+<label
+class="label"
+id="salaryLabel">
+Айлық жалақы
+</label>
+
+<div class="inputWrap">
+
+<input
+id="salaryInput"
+class="moneyInput"
+type="number"
+min="0"
+value="500000"
+oninput="calcSalary()">
+
+<span>₸</span>
+
+</div>
+
+<div
+class="hint"
+id="salaryHint">
+Кез келген соманы енгізіңіз.
+</div>
+
+<div class="summary">
+
+<span id="totalLabel">
+Бөлінетін жалпы сома
+</span>
+
+<strong id="totalSalary">
+500 000 ₸
+</strong>
+
+</div>
+
+</div>
+
+
+<div class="card alloc">
+
+<div class="allocGrid">
+
+<div
+class="allocRows"
+id="allocRows">
+</div>
+
+<div>
+
+<div
+class="donut"
+id="donut">
+</div>
+
+<p
+id="structureText"
+style="text-align:center;color:var(--muted);font-size:13px;margin-top:14px">
+Ұсынылған құрылым
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- IMPULSE -->
+
+<section id="impulse">
+
+<div class="sectionHead">
+
+<div>
+
+<h2 id="impulseTitle">
+Импульсивті сатып алуды анықтау
+</h2>
+
+<p id="impulseText">
+Заттың бағасын енгізіп, бірнеше сұраққа жауап беріңіз. Нәтиже сатып алудың жоспарланған қажеттілікке немесе импульске жақын екенін көрсетеді.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="purchase">
+
+
+<div class="card formCard">
+
+<div class="field">
+
+<label
+class="label"
+id="itemLabel">
+Заттың атауы
+</label>
+
+<input
+id="item"
+placeholder="Мысалы: жаңа құлаққап">
+
+</div>
+
+
+<div class="field">
+
+<label
+class="label"
+id="priceLabel">
+Бағасы
+</label>
+
+<input
+id="price"
+type="number"
+min="0"
+placeholder="80 000">
+
+</div>
+
+
+<div id="questions">
+</div>
+
+
+<button
+class="action"
+onclick="evaluate()"
+id="evaluateButton">
+Нәтижені анықтау
+</button>
+
+</div>
+
+
+<div
+class="card result"
+id="result">
+
+<div class="scoreCircle">
+
+<b id="score">
+—
+</b>
+
+</div>
+
+<h3 id="resultTitle">
+Сатып алуды бағалаңыз
+</h3>
+
+<p id="resultText">
+Сұрақтарға жауап бергеннен кейін мұнда сіздің нәтижеңіз және қысқаша ұсыныс көрсетіледі.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- DEFINITIONS -->
+
+<section id="definitions">
+
+<div class="sectionHead">
+
+<div>
+
+<h2 id="definitionsTitle">
+Негізгі анықтамалар
+</h2>
+
+<p id="definitionsText">
+Сайтта қолданылатын қаржылық ұғымдар қысқа әрі түсінікті түрде берілген.
+</p>
+
+</div>
+
+</div>
+
+
+<div class="defs">
+
+
+<div class="card def">
+
+<span>🏠</span>
+
+<h3 id="def1t">
+Негізгі қажеттілік
+</h3>
+
+<p id="def1p">
+Тұрмысқа қажетті тұрақты шығындар: баспана, тамақ, көлік және күнделікті қажеттіліктер.
+</p>
+
+</div>
+
+
+<div class="card def">
+
+<span>🎯</span>
+
+<h3 id="def2t">
+Қысқа мерзімді мақсат
+</h3>
+
+<p id="def2p">
+Жақын болашақта жүзеге асатын мақсатқа арналған жинақ: сапар, көлік, баспанаға алғашқы жарна және т.б.
+</p>
+
+</div>
+
+
+<div class="card def">
+
+<span>💎</span>
+
+<h3 id="def3t">
+Ұзақ мерзімді байлық
+</h3>
+
+<p id="def3p">
+Ұзақ уақыт ішінде капитал қалыптастыруға бағытталған жинақтар мен инвестициялар.
+</p>
+
+</div>
+
+
+<div class="card def">
+
+<span>🛒</span>
+
+<h3 id="def4t">
+Импульсивті сатып алу
+</h3>
+
+<p id="def4p">
+Алдын ала жоспарланбаған, эмоция немесе сәттік қалау әсерінен жасалатын сатып алу.
+</p>
+
+</div>
+
+
+<div class="card def">
+
+<span>📈</span>
+
+<h3 id="def5t">
+Инвестиция
+</h3>
+
+<p id="def5p">
+Болашақта табыс немесе капитал өсімін алу мақсатында қаражатты активтерге орналастыру.
+</p>
+
+</div>
+
+
+<div class="card def">
+
+<span>🧠</span>
+
+<h3 id="def6t">
+Қаржылық тәртіп
+</h3>
+
+<p id="def6p">
+Кіріс пен шығысты бақылау, мақсат қою және шешім қабылдауды алдын ала жоспарлау дағдысы.
+</p>
+
+</div>
+
+</div>
+
+</section>
+
+
+<!-- FOOTER -->
+
+<div class="footer">
+
+<span id="footer1">
+SMART MONEY • Ғылыми жоба
+</span>
+
+<span id="footer2">
+Қаржылық шешім қабылдауды үйреніңіз
+</span>
+
+</div>
+
+</main>
+
+</div>
+
+
+<script>
+
+/* ==========================================
+   ТІЛДЕР
+========================================== */
+
+const LANG = {
+
+kk: {
+
+nav:[
+"Басты бет",
+"Анықтамалар",
+"Жалақыны бөлу",
+"Импульсивтілік"
+],
+
+eyebrow:
+"● Қаржылық сауаттылық жобасы",
+
+heroTitle:
+'Ақшаңды басқар.<br><span style="color:var(--olive)">Болашағыңды құр.</span>',
+
+heroText:
+"Кірісті саналы түрде бөліп, қаржылық мақсаттарды жоспарлауға және қажетсіз, импульсивті сатып алуларды бағалауға көмектесетін интерактивті құрал.",
+
+heroButton:
+"Калькуляторды ашу →",
+
+modelTitle:
+"Ұсынылған қаржы моделі",
+
+bars:[
+"Қажеттіліктер",
+"Еркін шығын",
+"Қарыз / инв.",
+"Қысқа мақсат",
+"Ұзақ байлық"
+],
+
+salaryTitle:
+"Жалақыны бөлу",
+
+salaryText:
+"Айлық табысыңызды енгізіңіз — жүйе ұсынылған 55/5/10/15/15 моделіне сәйкес сомаларды бірден есептейді.",
+
+salaryLabel:
+"Айлық жалақы",
+
+salaryHint:
+"Кез келген соманы енгізіңіз.",
+
+totalLabel:
+"Бөлінетін жалпы сома",
+
+structure:
+"Ұсынылған құрылым",
+
+alloc:[
+"Негізгі қажеттіліктер",
+"Еркін шығын",
+"Қарыз / инвестиция",
+"Қысқа мерзімді мақсат",
+"Ұзақ мерзімді байлық"
+],
+
+impulseTitle:
+"Импульсивті сатып алуды анықтау",
+
+impulseText:
+"Заттың бағасын енгізіп, бірнеше сұраққа жауап беріңіз. Нәтиже сатып алудың жоспарланған қажеттілікке немесе импульске жақын екенін көрсетеді.",
+
+itemLabel:
+"Заттың атауы",
+
+itemPh:
+"Мысалы: жаңа құлаққап",
+
+priceLabel:
+"Бағасы",
+
+evaluate:
+"Нәтижені анықтау",
+
+resultTitle:
+"Сатып алуды бағалаңыз",
+
+resultText:
+"Сұрақтарға жауап бергеннен кейін мұнда сіздің нәтижеңіз және қысқаша ұсыныс көрсетіледі.",
+
+questions:[
+"Бұл затты сатып алу алдын ала жоспарланған ба?",
+"Бұл зат сізге қазір шынымен қажет пе?",
+"Сізде осыған ұқсас зат бар ма?",
+"Оны сатып алмасаңыз, маңызды қажеттілігіңіз орындалмай қала ма?",
+"Бұл сатып алу бюджетіңізге айтарлықтай әсер ете ме?",
+"24 сағаттан кейін де бұл затты сатып алғыңыз келе ме?",
+"Сіз оны негізінен жеңілдік немесе эмоция әсерінен алып жатырсыз ба?"
+],
+
+yes:"Иә",
+no:"Жоқ",
+
+definitionsTitle:
+"Негізгі анықтамалар",
+
+definitionsText:
+"Сайтта қолданылатын қаржылық ұғымдар қысқа әрі түсінікті түрде берілген.",
+
+defs:[
+
+[
+"Негізгі қажеттілік",
+"Тұрмысқа қажетті тұрақты шығындар: баспана, тамақ, көлік және күнделікті қажеттіліктер."
+],
+
+[
+"Қысқа мерзімді мақсат",
+"Жақын болашақта жүзеге асатын мақсатқа арналған жинақ: сапар, көлік, баспанаға алғашқы жарна және т.б."
+],
+
+[
+"Ұзақ мерзімді байлық",
+"Ұзақ уақыт ішінде капитал қалыптастыруға бағытталған жинақтар мен инвестициялар."
+],
+
+[
+"Импульсивті сатып алу",
+"Алдын ала жоспарланбаған, эмоция немесе сәттік қалау әсерінен жасалатын сатып алу."
+],
+
+[
+"Инвестиция",
+"Болашақта табыс немесе капитал өсімін алу мақсатында қаражатты активтерге орналастыру."
+],
+
+[
+"Қаржылық тәртіп",
+"Кіріс пен шығысты бақылау, мақсат қою және шешім қабылдауды алдын ала жоспарлау дағдысы."
+]
+
+],
+
+footer1:
+"SMART MONEY • Ғылыми жоба",
+
+footer2:
+"Қаржылық шешім қабылдауды үйреніңіз",
+
+missing:
+"⚠️ Сұрақтарды толық белгілеңіз",
+
+missingText:
+"Жауап берілмеген сұрақтар: {n}. Әр сұрақтан «Иә» немесе «Жоқ» таңдаңыз.",
+
+low:
+"🟢 Импульсивтілік белгілері аз",
+
+lowText:
+"Сатып алу шешіміңіз жоспарланған қажеттілікке көбірек ұқсайды. Дегенмен, бағаны бюджетіңізбен салыстыруды ұмытпаңыз.",
+
+mid:
+"🟡 Ойланып алған дұрыс",
+
+midText:
+"Сатып алуда импульсивтілік белгілері бар. 24 сағат күтіп, қажеттілігіңіз бен қаржылық мақсатыңызды қайта бағалаңыз.",
+
+high:
+"🔴 Импульсивті сатып алу ықтималдығы жоғары",
+
+highText:
+"Сатып алуда бірнеше импульсивтілік белгісі байқалды. Сатып алуды кейінге қалдырып, оның бюджетке әсерін тексерген дұрыс."
+
+},
+
+
+/* ==========================================
+   РУССКИЙ
+========================================== */
+
+ru: {
+
+nav:[
+"Главная",
+"Определения",
+"Распределение зарплаты",
+"Импульсивность"
+],
+
+eyebrow:
+"● Проект по финансовой грамотности",
+
+heroTitle:
+'Управляй деньгами.<br><span style="color:var(--olive)">Создавай будущее.</span>',
+
+heroText:
+"Интерактивный инструмент для осознанного распределения дохода, планирования финансовых целей и оценки ненужных импульсивных покупок.",
+
+heroButton:
+"Открыть калькулятор →",
+
+modelTitle:
+"Предлагаемая финансовая модель",
+
+bars:[
+"Потребности",
+"Свободные расходы",
+"Долги / инвестиции",
+"Краткосрочная цель",
+"Долгосрочное богатство"
+],
+
+salaryTitle:
+"Распределение зарплаты",
+
+salaryText:
+"Введите ежемесячный доход — система сразу рассчитает суммы по модели 55/5/10/15/15.",
+
+salaryLabel:
+"Ежемесячная зарплата",
+
+salaryHint:
+"Введите любую сумму.",
+
+totalLabel:
+"Общая распределённая сумма",
+
+structure:
+"Предлагаемая структура",
+
+alloc:[
+"Основные потребности",
+"Свободные расходы",
+"Долги / инвестиции",
+"Краткосрочная цель",
+"Долгосрочное богатство"
+],
+
+impulseTitle:
+"Определение импульсивной покупки",
+
+impulseText:
+"Введите цену товара и ответьте на вопросы. Результат покажет, насколько покупка похожа на запланированную потребность или импульсивное решение.",
+
+itemLabel:
+"Название товара",
+
+itemPh:
+"Например: новые наушники",
+
+priceLabel:
+"Цена",
+
+evaluate:
+"Определить результат",
+
+resultTitle:
+"Оцените покупку",
+
+resultText:
+"После ответов здесь появится ваш результат и краткая рекомендация.",
+
+questions:[
+"Была ли покупка запланирована заранее?",
+"Действительно ли этот товар нужен вам сейчас?",
+"Есть ли у вас похожая вещь?",
+"Если не купить её, останется ли важная потребность неудовлетворённой?",
+"Сильно ли эта покупка повлияет на ваш бюджет?",
+"Хотите ли вы купить её даже через 24 часа?",
+"Покупаете ли вы её в основном из-за скидки или эмоций?"
+],
+
+yes:"Да",
+no:"Нет",
+
+definitionsTitle:
+"Основные определения",
+
+definitionsText:
+"Краткие и понятные объяснения финансовых понятий, используемых на сайте.",
+
+defs:[
+
+[
+"Основные потребности",
+"Постоянные расходы на жильё, питание, транспорт и другие необходимые расходы."
+],
+
+[
+"Краткосрочная цель",
+"Накопления на цель, которую планируется реализовать в ближайшем будущем: поездка, автомобиль, первый взнос и т.д."
+],
+
+[
+"Долгосрочное богатство",
+"Сбережения и инвестиции, направленные на формирование капитала в долгосрочной перспективе."
+],
+
+[
+"Импульсивная покупка",
+"Незапланированная покупка под влиянием эмоций или сиюминутного желания."
+],
+
+[
+"Инвестиция",
+"Размещение средств в активах с целью получить доход или увеличить капитал в будущем."
+],
+
+[
+"Финансовая дисциплина",
+"Навык контролировать доходы и расходы, ставить цели и заранее планировать финансовые решения."
+]
+
+],
+
+footer1:
+"SMART MONEY • Научный проект",
+
+footer2:
+"Учитесь принимать финансовые решения",
+
+missing:
+"⚠️ Ответьте на все вопросы",
+
+missingText:
+"Без ответа остались вопросы: {n}. Выберите «Да» или «Нет» для каждого вопроса.",
+
+low:
+"🟢 Признаки импульсивности низкие",
+
+lowText:
+"Покупка больше похожа на запланированную потребность. Тем не менее, сравните цену с вашим бюджетом.",
+
+mid:
+"🟡 Стоит обдумать",
+
+midText:
+"Есть признаки импульсивной покупки. Подождите 24 часа и заново оцените необходимость и влияние на финансовые цели.",
+
+high:
+"🔴 Высокая вероятность импульсивной покупки",
+
+highText:
+"Обнаружено несколько признаков импульсивности. Стоит отложить покупку и проверить её влияние на бюджет."
+
+},
+
+
+/* ==========================================
+   ENGLISH
+========================================== */
+
+en: {
+
+nav:[
+"Home",
+"Definitions",
+"Salary Allocation",
+"Impulse Buying"
+],
+
+eyebrow:
+"● Financial literacy project",
+
+heroTitle:
+'Manage your money.<br><span style="color:var(--olive)">Build your future.</span>',
+
+heroText:
+"An interactive tool for consciously allocating income, planning financial goals, and evaluating unnecessary impulse purchases.",
+
+heroButton:
+"Open calculator →",
+
+modelTitle:
+"Suggested financial model",
+
+bars:[
+"Essential needs",
+"Free spending",
+"Debt / investments",
+"Short-term goal",
+"Long-term wealth"
+],
+
+salaryTitle:
+"Salary allocation",
+
+salaryText:
+"Enter your monthly income — the system will instantly calculate amounts using the 55/5/10/15/15 model.",
+
+salaryLabel:
+"Monthly salary",
+
+salaryHint:
+"Enter any amount.",
+
+totalLabel:
+"Total allocated amount",
+
+structure:
+"Suggested structure",
+
+alloc:[
+"Essential needs",
+"Free spending",
+"Debt / investments",
+"Short-term goal",
+"Long-term wealth"
+],
+
+impulseTitle:
+"Impulse purchase assessment",
+
+impulseText:
+"Enter the item price and answer several questions. The result shows whether the purchase is closer to a planned need or an impulse decision.",
+
+itemLabel:
+"Item name",
+
+itemPh:
+"Example: new headphones",
+
+priceLabel:
+"Price",
+
+evaluate:
+"Show result",
+
+resultTitle:
+"Assess the purchase",
+
+resultText:
+"After answering the questions, your result and a short recommendation will appear here.",
+
+questions:[
+"Was this purchase planned in advance?",
+"Do you really need this item right now?",
+"Do you already own something similar?",
+"If you do not buy it, will an important need remain unmet?",
+"Will this purchase significantly affect your budget?",
+"Will you still want to buy it after 24 hours?",
+"Are you mainly buying it because of a discount or emotion?"
+],
+
+yes:"Yes",
+no:"No",
+
+definitionsTitle:
+"Key definitions",
+
+definitionsText:
+"Short and clear explanations of the financial concepts used on the website.",
+
+defs:[
+
+[
+"Essential needs",
+"Regular expenses for housing, food, transport and other necessities."
+],
+
+[
+"Short-term goal",
+"Savings for a goal planned for the near future: a trip, car, down payment, etc."
+],
+
+[
+"Long-term wealth",
+"Savings and investments aimed at building capital over a longer period."
+],
+
+[
+"Impulse purchase",
+"An unplanned purchase influenced by emotion or a momentary desire."
+],
+
+[
+"Investment",
+"Placing money into assets with the goal of earning income or increasing capital in the future."
+],
+
+[
+"Financial discipline",
+"The ability to control income and expenses, set goals and plan financial decisions in advance."
+]
+
+],
+
+footer1:
+"SMART MONEY • Science project",
+
+footer2:
+"Learn to make financial decisions",
+
+missing:
+"⚠️ Answer all questions",
+
+missingText:
+"Unanswered questions: {n}. Choose “Yes” or “No” for every question.",
+
+low:
+"🟢 Few signs of impulsivity",
+
+lowText:
+"The purchase looks more like a planned need. However, compare the price with your budget.",
+
+mid:
+"🟡 Think it over",
+
+midText:
+"There are signs of impulsive buying. Wait 24 hours and reassess the need and its impact on your financial goals.",
+
+high:
+"🔴 High likelihood of an impulse purchase",
+
+highText:
+"Several signs of impulsivity were detected. Consider delaying the purchase and checking its impact on your budget."
+
+}
+
+};
+
+
+/* ==========================================
+   GLOBAL VARIABLES
+========================================== */
+
+let lang = "kk";
+
+const alloc = [
+  ["🏠",55],
+  ["🎉",5],
+  ["💳",10],
+  ["🎯",15],
+  ["💎",15]
+];
+
+
+/* ==========================================
+   FORMAT MONEY
+========================================== */
+
+function fmt(n){
+
+  const locale =
+    lang === "kk"
+      ? "kk-KZ"
+      : lang === "ru"
+      ? "ru-RU"
+      : "en-US";
+
+  return new Intl.NumberFormat(locale)
+    .format(Math.round(n)) + " ₸";
+
+}
+
+
+/* ==========================================
+   SALARY CALCULATOR
+========================================== */
+
+function calcSalary(){
+
+  const input =
+    document.getElementById("salaryInput");
+
+  const salary =
+    Math.max(
+      0,
+      Number(input.value) || 0
+    );
+
+  document.getElementById(
+    "totalSalary"
+  ).textContent = fmt(salary);
+
+  const t = LANG[lang];
+
+  document.getElementById(
+    "allocRows"
+  ).innerHTML = alloc.map((item,index)=>{
+
+    const icon = item[0];
+    const percent = item[1];
+
+    const amount =
+      salary * percent / 100;
+
+    return `
+      <div class="allocRow">
+
+        <div class="ico">
+          ${icon}
+        </div>
+
+        <div>
+          <b>${t.alloc[index]}</b>
+        </div>
+
+        <div class="pct">
+          ${percent}%
+        </div>
+
+        <div class="amount">
+          ${fmt(amount)}
+        </div>
+
+      </div>
+    `;
+
+  }).join("");
+
+}
+
+
+/* ==========================================
+   NAVIGATION
+========================================== */
+
+function go(id){
+
+  const section =
+    document.getElementById(id);
+
+  if(section){
+
+    section.scrollIntoView({
+      behavior:"smooth"
+    });
+
+  }
+
+  document
+    .querySelectorAll("[data-nav]")
+    .forEach(btn=>{
+      btn.classList.remove("active");
+    });
+
+  const map = {
+    home:0,
+    definitions:1,
+    salary:2,
+    impulse:3
+  };
+
+  const buttons =
+    document.querySelectorAll("[data-nav]");
+
+  if(buttons[map[id]]){
+
+    buttons[map[id]]
+      .classList.add("active");
+
+  }
+
+}
+
+
+/* ==========================================
+   BUILD QUESTIONS
+========================================== */
+
+function buildQs(){
+
+  const t = LANG[lang];
+
+  const container =
+    document.getElementById("questions");
+
+  container.innerHTML =
+    t.questions.map((question,index)=>{
+
+      return `
+        <div class="question">
+
+          <div class="qtext">
+            ${index + 1}. ${question}
+          </div>
+
+          <div class="answers">
+
+            <button
+              type="button"
+              data-q="${index}"
+              data-v="1"
+              onclick="ans(this)">
+              ${t.yes}
+            </button>
+
+            <button
+              type="button"
+              data-q="${index}"
+              data-v="0"
+              onclick="ans(this)">
+              ${t.no}
+            </button>
+
+          </div>
+
+        </div>
+      `;
+
+    }).join("");
+
+}
+
+
+/* ==========================================
+   SELECT ANSWER
+========================================== */
+
+function ans(button){
+
+  const question =
+    button.getAttribute("data-q");
+
+  document
+    .querySelectorAll(
+      '[data-q="' + question + '"]'
+    )
+    .forEach(btn=>{
+      btn.classList.remove("selected");
+    });
+
+  button.classList.add("selected");
+
+}
+
+
+/* ==========================================
+   IMPULSE TEST
+========================================== */
+
+function evaluate(){
+
+  const t = LANG[lang];
+
+  const values = [];
+  const missing = [];
+
+  for(let i=0;i<t.questions.length;i++){
+
+    const selected =
+      document.querySelector(
+        'button[data-q="' + i + '"].selected'
+      );
+
+    if(!selected){
+
+      missing.push(i + 1);
+
+    }else{
+
+      values.push(
+        Number(
+          selected.getAttribute("data-v")
+        )
+      );
+
+    }
+
+  }
+
+
+  const result =
+    document.getElementById("result");
+
+
+  /* NOT ALL QUESTIONS ANSWERED */
+
+  if(missing.length > 0){
+
+    document.getElementById(
+      "score"
+    ).textContent = "—";
+
+    document.getElementById(
+      "resultTitle"
+    ).textContent = t.missing;
+
+    document.getElementById(
+      "resultText"
+    ).textContent =
+      t.missingText.replace(
+        "{n}",
+        missing.join(", ")
+      );
+
+    result.classList.remove(
+      "good",
+      "warn",
+      "bad"
+    );
+
+    result.scrollIntoView({
+      behavior:"smooth",
+      block:"center"
+    });
+
+    return;
+
+  }
+
+
+  /* CALCULATE SCORE */
+
+  let impulsive = 0;
+
+
+  if(values[0] === 0){
+    impulsive++;
+  }
+
+  if(values[1] === 0){
+    impulsive++;
+  }
+
+  if(values[2] === 1){
+    impulsive++;
+  }
+
+  if(values[3] === 0){
+    impulsive++;
+  }
+
+  if(values[4] === 1){
+    impulsive++;
+  }
+
+  if(values[5] === 0){
+    impulsive++;
+  }
+
+  if(values[6] === 1){
+    impulsive++;
+  }
+
+
+  const percent =
+    Math.round(
+      (impulsive / 7) * 100
+    );
+
+
+  result.classList.remove(
+    "good",
+    "warn",
+    "bad"
+  );
+
+
+  let title = "";
+  let message = "";
+
+
+  if(percent <= 28){
+
+    result.classList.add("good");
+
+    title = t.low;
+    message = t.lowText;
+
+  }
+
+  else if(percent <= 57){
+
+    result.classList.add("warn");
+
+    title = t.mid;
+    message = t.midText;
+
+  }
+
+  else{
+
+    result.classList.add("bad");
+
+    title = t.high;
+    message = t.highText;
+
+  }
+
+
+  document.getElementById(
+    "score"
+  ).textContent =
+    percent + "%";
+
+
+  document.getElementById(
+    "resultTitle"
+  ).textContent =
+    title;
+
+
+  document.getElementById(
+    "resultText"
+  ).textContent =
+    message;
+
+
+  result.scrollIntoView({
+    behavior:"smooth",
+    block:"center"
+  });
+
+}
+
+
+/* ==========================================
+   LANGUAGE SWITCH
+========================================== */
+
+function setLang(selectedLang){
+
+  lang = selectedLang;
+
+  const t =
+    LANG[lang];
+
+  document.documentElement.lang =
+    lang;
+
+
+  /* LANGUAGE BUTTONS */
+
+  document
+    .querySelectorAll(".lang")
+    .forEach(button=>{
+      button.classList.remove("active");
+    });
+
+  const languageButton =
+    document.querySelector(
+      '.lang[onclick="setLang(\'' +
+      lang +
+      '\')"]'
+    );
+
+  if(languageButton){
+    languageButton.classList.add("active");
+  }
+
+
+  /* NAVIGATION */
+
+  const navButtons =
+    document.querySelectorAll("[data-nav]");
+
+  t.nav.forEach((text,index)=>{
+
+    if(navButtons[index]){
+      navButtons[index].textContent =
+        text;
+    }
+
+  });
+
+
+  /* HOME */
+
+  document.getElementById(
+    "eyebrow"
+  ).textContent =
+    t.eyebrow;
+
+  document.getElementById(
+    "heroTitle"
+  ).innerHTML =
+    t.heroTitle;
+
+  document.getElementById(
+    "heroText"
+  ).textContent =
+    t.heroText;
+
+  document.getElementById(
+    "heroButton"
+  ).textContent =
+    t.heroButton;
+
+  document.getElementById(
+    "modelTitle"
+  ).textContent =
+    t.modelTitle;
+
+
+  t.bars.forEach((text,index)=>{
+
+    document.getElementById(
+      "bar" + (index + 1)
+    ).textContent =
+      text;
+
+  });
+
+
+  /* SALARY */
+
+  document.getElementById(
+    "salaryTitle"
+  ).textContent =
+    t.salaryTitle;
+
+  document.getElementById(
+    "salaryText"
+  ).textContent =
+    t.salaryText;
+
+  document.getElementById(
+    "salaryLabel"
+  ).textContent =
+    t.salaryLabel;
+
+  document.getElementById(
+    "salaryHint"
+  ).textContent =
+    t.salaryHint;
+
+  document.getElementById(
+    "totalLabel"
+  ).textContent =
+    t.totalLabel;
+
+  document.getElementById(
+    "structureText"
+  ).textContent =
+    t.structure;
+
+
+  /* IMPULSE */
+
+  document.getElementById(
+    "impulseTitle"
+  ).textContent =
+    t.impulseTitle;
+
+  document.getElementById(
+    "impulseText"
+  ).textContent =
+    t.impulseText;
+
+  document.getElementById(
+    "itemLabel"
+  ).textContent =
+    t.itemLabel;
+
+  document.getElementById(
+    "item"
+  ).placeholder =
+    t.itemPh;
+
+  document.getElementById(
+    "priceLabel"
+  ).textContent =
+    t.priceLabel;
+
+  document.getElementById(
+    "evaluateButton"
+  ).textContent =
+    t.evaluate;
+
+  document.getElementById(
+    "resultTitle"
+  ).textContent =
+    t.resultTitle;
+
+  document.getElementById(
+    "resultText"
+  ).textContent =
+    t.resultText;
+
+
+  /* DEFINITIONS */
+
+  document.getElementById(
+    "definitionsTitle"
+  ).textContent =
+    t.definitionsTitle;
+
+  document.getElementById(
+    "definitionsText"
+  ).textContent =
+    t.definitionsText;
+
+
+  t.defs.forEach((item,index)=>{
+
+    document.getElementById(
+      "def" + (index + 1) + "t"
+    ).textContent =
+      item[0];
+
+    document.getElementById(
+      "def" + (index + 1) + "p"
+    ).textContent =
+      item[1];
+
+  });
+
+
+  /* FOOTER */
+
+  document.getElementById(
+    "footer1"
+  ).textContent =
+    t.footer1;
+
+  document.getElementById(
+    "footer2"
+  ).textContent =
+    t.footer2;
+
+
+  /* REBUILD */
+
+  buildQs();
+  calcSalary();
+
+}
+
+
+/* ==========================================
+   START
+========================================== */
+
+calcSalary();
+buildQs();
+
+</script>
+
+</body>
+</html>
